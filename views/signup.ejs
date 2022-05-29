@@ -1,0 +1,64 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<div class="container text-center">
+    <h3>Create Account</h3>
+    <form action="/signup" method="POST">
+        <input type="text" name="username" placeholder="Username" class="form-control" style="margin-top: 20px;">
+        <% let usernameError = validationErrors.find(err => err.param === 'username') %>
+        <% if (usernameError) { %>
+            <br>
+            <p class="alert alert-danger">
+                <%= usernameError.msg %>
+            </p>
+        <% } %>
+        <input type="email" name="email" placeholder="Email" class="form-control" style="margin-top: 20px;">
+        <% let emailError = validationErrors.find(err => err.param === 'email') %>
+        <% if (emailError) { %>
+            <br>
+            <p class="alert alert-danger">
+                <%= emailError.msg %>
+            </p>
+        <% } %>
+        <input type="password" name="password" placeholder="Password" class="form-control" style="margin-top: 20px;">
+        <% let passwordError = validationErrors.find(err => err.param === 'password') %>
+        <% if (passwordError) { %>
+            <br>
+            <p class="alert alert-danger">
+                <%= passwordError.msg %>
+            </p>
+        <% } %>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control" style="margin-top: 20px;">
+        <% let confirmPasswordError = validationErrors.find(err => err.param === 'confirmPassword') %>
+        <% if (confirmPasswordError) { %>
+            <br>
+            <p class="alert alert-danger">
+                <%= confirmPasswordError.msg %>
+            </p>
+        <% } %>
+        <input type="submit" value="Create Account" class="btn btn-primary" style="margin-top: 20px;">
+        
+    </form>
+    <% if(authError) { %>
+        <br>
+        <p class="alert alert-danger">
+            <%= authError %>
+        </p>
+    <% } %>
+
+    <!-- <% for (let error of validationErrors) { %>
+        <p class="alert alert-danger">
+            <%= error.msg %>
+        </p>
+    <% } %> -->
+    <br>
+    <div>
+        Already have an account ? <a href="/login">Login</a>
+    </div>
+</div>
+
+<%- include('parts/scripts') %>
+
+</body>
+
+</html>
