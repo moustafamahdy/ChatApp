@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 const User = require('./user.model').User
 
-const DB_URL = 'mongodb://localhost:27017/chat-app';
+// const DB_URL = 'mongodb://localhost:27017/chat-app';
 
-// const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
 
 // const userSchema = mongoose.Schema({
 //     username: String,
