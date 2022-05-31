@@ -14,4 +14,6 @@ router.post('/reject', authGuard.isAuth, bodyParser, friendController.reject);
 
 router.post('/delete', authGuard.isAuth, bodyParser, friendController.delete);
 
+router.get('/', authGuard.isAuth, bodyParser, friendController.getFriends);
+
 module.exports = router;

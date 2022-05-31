@@ -12,12 +12,13 @@ exports.getSignup = (req, res, next) => {
 };
 
 exports.postSignup = (req, res, next) => {
-
+    
     if (validationResult(req).isEmpty()){
         authModel
-            .createNewUser(req.body.username, req.body.email, req.body.password)
+            .createNewUser(req.body.username, req.body.email, req.file.filename, req.body.password)
             .then(res.redirect('/login'))
             .catch(err => {
+                console.log(err)
                 req.flash('authError', err)
                 res.redirect('/signup')
             })
