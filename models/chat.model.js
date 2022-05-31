@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://localhost:27017/chat-app';
+// const DB_URL = 'mongodb://localhost:27017/chat-app';
 
-// const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
 
 
 const chatSchema = mongoose.Schema({
