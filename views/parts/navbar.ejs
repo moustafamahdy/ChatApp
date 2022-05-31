@@ -17,10 +17,10 @@
                   <a class="nav-link <%= pageTitle == 'Groups' && 'active' %>" href="/groups">Groups</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <%= pageTitle == 'Friends' && 'active' %>" href="/chat/friends">Friends</a>
+                  <a class="nav-link <%= pageTitle == 'Friends' && 'active' %>" href="/friend">Friends</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <%= pageTitle == pageTitle && 'active' %>" href="/profile">Profile</a>
+                  <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <div class="dropdown">
                   <button class="btn btn-primary dropdown-toggle" type="button" id="friendRequestsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,12 +48,26 @@
               <% } %>
               
             </ul>
+            <form action="/">
+              
+              <div class="wrapper">
+                <div id="search-container">
+            
+                  <input type="search" id="search-input" name="search" placeholder="Search...">
+                  <button id="search-button" class="btn btn-primary mb-2 mr-2">Search</button>
+            
+                </div>
+              </div>
+            </form>
             <% if(isUser) { %>
               <form action="/logout" method="POST">
                 <input type="submit" value="Logout" class="btn btn-danger">
               </form>
             <% } %>
+            
           </div>
         </div>
     </div>
-    </nav>
+</nav>
+
+    

@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const Chat = require('./chat.model').Chat
 
-// const DB_URL = 'mongodb://localhost:27017/chat-app';
+const DB_URL = 'mongodb://localhost:27017/chat-app';
 
-const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
+// const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
 
 
 const userSchema = mongoose.Schema({
@@ -197,6 +197,9 @@ exports.deleteFriend = async (data) => {
             User.updateOne(
                 { _id: data.myId },
                 { $pull: { friends: { id: data.friendId } } }
+            ),
+            Chat.deleteOne(
+                { _id: data.friendChatId }
             )
         ]);
         // await Chat.updateOne(
@@ -232,4 +235,29 @@ exports.getFriends = async id => {
         mongoose.disconnect();
         throw new Error(error);
     }
+};
+
+exports.getFriendsBySearch = (search) => {
+    return new Promise((resolve, reject) => {
+        // connect to the database
+        mongoose.connect(DB_URL).then(() => {
+            // get users
+            return User.find({ 
+                $or: [
+                    {
+                        username: { $regex: search, $options: "i" }
+                    }
+                    
+                ]
+             })
+        }).then(users => {
+            // disconnect
+            mongoose.disconnect()
+            resolve(users)
+            }).catch(err => {
+                mongoose.disconnect()
+                reject(err)
+            })
+    })
 }
+

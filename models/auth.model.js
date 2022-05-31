@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 const User = require('./user.model').User
 
-// const DB_URL = 'mongodb://localhost:27017/chat-app';
+const DB_URL = 'mongodb://localhost:27017/chat-app';
 
-const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
+// const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?retryWrites=true&w=majority';
 
 // const userSchema = mongoose.Schema({
 //     username: String,
@@ -20,7 +20,7 @@ const DB_URL = 'mongodb+srv://Moustafamahdy:Mo371997@chatapp.0ttvv.mongodb.net/?
 
 // const User = mongoose.model('user', userSchema);
 
-exports.createNewUser = (username, email, password) => {
+exports.createNewUser = (username, email, image, password) => {
     // check if email already exists
     // yes ===> error
     // no ===> create new accout
@@ -42,6 +42,7 @@ exports.createNewUser = (username, email, password) => {
             let user = new User({
                 username: username,
                 email: email,
+                image: image,
                 password: hashedPassword
             })
             return user.save()

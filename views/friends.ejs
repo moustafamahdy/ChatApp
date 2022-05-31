@@ -1,7 +1,33 @@
 <%- include('parts/header') %>
 <%- include('parts/navbar') %>
 
+<div class="row my-3">
+    <% for (let friend of friends) { %>
+        <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
 
+            <div class="card my-3" style="width: 360px;">
+                <img class="card-img-top" src="<%= friend.image %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%= friend.name %></h5>
+                    
+                    <a href="/chat/<%= friend.chatId %>" class="btn btn-primary">Chat</a>
+
+                    <form action="" method="POST">
+
+                        <input type="submit" value="Delete Friend" class="btn btn-danger" formaction="/friend/delete">
+
+                        <input type="hidden" name="friendId" value="<%= friend.id %>">
+                        <input id="myId" type="hidden" name="myId" value="<%= myId %>" />
+                        <input type="hidden" name="username" value="<%= friend.name %>">
+                        <input type="hidden" name="friendChatId" value="<%= friend.chatId %>">    
+                    </form>
+        
+                </div>
+            </div>
+            
+        </div>
+    <% } %>
+</div>
 
 <%- include('parts/scripts') %>
 <script src="/socket.io/socket.io.js"></script>

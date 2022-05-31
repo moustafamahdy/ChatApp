@@ -55,3 +55,20 @@ exports.delete = (req, res, next) => {
             res.redirect('/error');
         });
 };
+
+exports.getFriends = (req, res, next) => {
+    userModel
+        .getFriends(req.session.userId)
+        .then((friends) => {
+            res.render('friends', {
+                pageTitle: 'Friends',
+                isUser: req.session.userId,
+                myId: req.session.userId,
+                friendsRequests: req.friendsRequests,
+                friends: friends
+            })
+        })
+        .catch(err => {
+            res.redirect('/error');
+        });
+}
